@@ -1,0 +1,1331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4.1">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Prime Components" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="KIOSK" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">300</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">300</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/sso/core/custom/login?id=9911a0f759b2546a7f6229f301505c76 HTTP/1.1</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Authorize User" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/sso/core/connect/authorize?client_id=kioskapp&amp;redirect_uri=file%3A%2F%2F%2Fcallback&amp;response_type=token%20id_token&amp;scope=openid%20profile%20email%20roles%20kiosk&amp;state=57e271b37fe7482da89af7af9d097e8e&amp;nonce=1ad123fa63f942cca1ab2aa0f42b950d</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers"/>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Card Profiles" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">http</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/GTBPrimeKioskIntegrator/api/kiosk/GetCardProfiles</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2d0Yi5wcmltZWNtcy5jbG91ZC9zc28vY29yZSIsImF1ZCI6Imh0dHBzOi8vZ3RiLnByaW1lY21zLmNsb3VkL3Nzby9jb3JlL3Jlc291cmNlcyIsImV4cCI6MTkxMjAxMDcxNywibmJmIjoxNjI4MTg2NzE3LCJjbGllbnRfaWQiOiJraW9za2FwcCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsInJvbGVzIiwia2lvc2siXSwic3ViIjoiM180NF8yMTQiLCJhdXRoX3RpbWUiOjE2MjgxODY3MTcsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.D1WuWyK_os1Rg4KYrDtGocSO0CAMACbZBaiC0B1f5_wyuSii_BOvuwJglIvjeUgimG0O2eymPWvxHwanpJ7KR3CUqItahf_YYp4tkfelQAi08DzEo7nbCt0x9mETFXWDDJ_amgJhgvInUla_LVEVXJNlOKmKecGRDNzXJI_iOcvzj1p9Z3Z1AaRvEmW0dWmKKQ1ewpfzeOzCOqLSMkuXbJXVIBX-p1IjHMM1z8CgKIHlx7R6p0Nn5fGTyk2s4n9HadxhDzdGfhe3VAmwP-6pJaCgi_SYKMmSjH2-ryKaPms8E6TpNYiN_2_caUcbEa1_i6zBp2eNWPv07MIq8OTl-A</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="RetrieveAccountDetails" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;accountNumber&quot;:&quot;0130412015&quot;,&quot;userId&quot;:&quot;test&quot;,&quot;reference&quot;:1628175898719}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/GTBPrimeKioskIntegrator/api/kiosk/retrieveaccountdetails</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2d0Yi5wcmltZWNtcy5jbG91ZC9zc28vY29yZSIsImF1ZCI6Imh0dHBzOi8vZ3RiLnByaW1lY21zLmNsb3VkL3Nzby9jb3JlL3Jlc291cmNlcyIsImV4cCI6MTkxMjAxMDcxNywibmJmIjoxNjI4MTg2NzE3LCJjbGllbnRfaWQiOiJraW9za2FwcCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsInJvbGVzIiwia2lvc2siXSwic3ViIjoiM180NF8yMTQiLCJhdXRoX3RpbWUiOjE2MjgxODY3MTcsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.D1WuWyK_os1Rg4KYrDtGocSO0CAMACbZBaiC0B1f5_wyuSii_BOvuwJglIvjeUgimG0O2eymPWvxHwanpJ7KR3CUqItahf_YYp4tkfelQAi08DzEo7nbCt0x9mETFXWDDJ_amgJhgvInUla_LVEVXJNlOKmKecGRDNzXJI_iOcvzj1p9Z3Z1AaRvEmW0dWmKKQ1ewpfzeOzCOqLSMkuXbJXVIBX-p1IjHMM1z8CgKIHlx7R6p0Nn5fGTyk2s4n9HadxhDzdGfhe3VAmwP-6pJaCgi_SYKMmSjH2-ryKaPms8E6TpNYiN_2_caUcbEa1_i6zBp2eNWPv07MIq8OTl-A</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Generate OTP" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;accountNumber&quot;:&quot;0130412015&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/GTBPrimeKioskIntegrator/api/kiosk/generateOTP</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2d0Yi5wcmltZWNtcy5jbG91ZC9zc28vY29yZSIsImF1ZCI6Imh0dHBzOi8vZ3RiLnByaW1lY21zLmNsb3VkL3Nzby9jb3JlL3Jlc291cmNlcyIsImV4cCI6MTkxMjAxMDcxNywibmJmIjoxNjI4MTg2NzE3LCJjbGllbnRfaWQiOiJraW9za2FwcCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsInJvbGVzIiwia2lvc2siXSwic3ViIjoiM180NF8yMTQiLCJhdXRoX3RpbWUiOjE2MjgxODY3MTcsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.D1WuWyK_os1Rg4KYrDtGocSO0CAMACbZBaiC0B1f5_wyuSii_BOvuwJglIvjeUgimG0O2eymPWvxHwanpJ7KR3CUqItahf_YYp4tkfelQAi08DzEo7nbCt0x9mETFXWDDJ_amgJhgvInUla_LVEVXJNlOKmKecGRDNzXJI_iOcvzj1p9Z3Z1AaRvEmW0dWmKKQ1ewpfzeOzCOqLSMkuXbJXVIBX-p1IjHMM1z8CgKIHlx7R6p0Nn5fGTyk2s4n9HadxhDzdGfhe3VAmwP-6pJaCgi_SYKMmSjH2-ryKaPms8E6TpNYiN_2_caUcbEa1_i6zBp2eNWPv07MIq8OTl-A</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetIssuanceAccount" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;accountNumber&quot;:&quot;0130412015|kiosk&quot;,&quot;CardProfileID&quot;:&quot;1611&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/GTBPrimeKioskIntegrator/api/kiosk/GetIssuanceAccountDetails</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2d0Yi5wcmltZWNtcy5jbG91ZC9zc28vY29yZSIsImF1ZCI6Imh0dHBzOi8vZ3RiLnByaW1lY21zLmNsb3VkL3Nzby9jb3JlL3Jlc291cmNlcyIsImV4cCI6MTkxMjAxMDcxNywibmJmIjoxNjI4MTg2NzE3LCJjbGllbnRfaWQiOiJraW9za2FwcCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsInJvbGVzIiwia2lvc2siXSwic3ViIjoiM180NF8yMTQiLCJhdXRoX3RpbWUiOjE2MjgxODY3MTcsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.D1WuWyK_os1Rg4KYrDtGocSO0CAMACbZBaiC0B1f5_wyuSii_BOvuwJglIvjeUgimG0O2eymPWvxHwanpJ7KR3CUqItahf_YYp4tkfelQAi08DzEo7nbCt0x9mETFXWDDJ_amgJhgvInUla_LVEVXJNlOKmKecGRDNzXJI_iOcvzj1p9Z3Z1AaRvEmW0dWmKKQ1ewpfzeOzCOqLSMkuXbJXVIBX-p1IjHMM1z8CgKIHlx7R6p0Nn5fGTyk2s4n9HadxhDzdGfhe3VAmwP-6pJaCgi_SYKMmSjH2-ryKaPms8E6TpNYiN_2_caUcbEa1_i6zBp2eNWPv07MIq8OTl-A</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="DebitGenerateChipData" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&quot;RequestID&quot;:&quot;16702&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">gtb.primecms.cloud</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/GTBPrimeKioskIntegrator/api/kiosk/DebitCustomerAndGenerateChipData</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Authorization</stringProp>
+                  <stringProp name="Header.value">Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSIsImtpZCI6ImEzck1VZ01Gdjl0UGNsTGE2eUYzekFrZnF1RSJ9.eyJpc3MiOiJodHRwczovL2d0Yi5wcmltZWNtcy5jbG91ZC9zc28vY29yZSIsImF1ZCI6Imh0dHBzOi8vZ3RiLnByaW1lY21zLmNsb3VkL3Nzby9jb3JlL3Jlc291cmNlcyIsImV4cCI6MTkxMjAxMDcxNywibmJmIjoxNjI4MTg2NzE3LCJjbGllbnRfaWQiOiJraW9za2FwcCIsInNjb3BlIjpbIm9wZW5pZCIsInByb2ZpbGUiLCJlbWFpbCIsInJvbGVzIiwia2lvc2siXSwic3ViIjoiM180NF8yMTQiLCJhdXRoX3RpbWUiOjE2MjgxODY3MTcsImlkcCI6Imlkc3J2IiwiYW1yIjpbInBhc3N3b3JkIl19.D1WuWyK_os1Rg4KYrDtGocSO0CAMACbZBaiC0B1f5_wyuSii_BOvuwJglIvjeUgimG0O2eymPWvxHwanpJ7KR3CUqItahf_YYp4tkfelQAi08DzEo7nbCt0x9mETFXWDDJ_amgJhgvInUla_LVEVXJNlOKmKecGRDNzXJI_iOcvzj1p9Z3Z1AaRvEmW0dWmKKQ1ewpfzeOzCOqLSMkuXbJXVIBX-p1IjHMM1z8CgKIHlx7R6p0Nn5fGTyk2s4n9HadxhDzdGfhe3VAmwP-6pJaCgi_SYKMmSjH2-ryKaPms8E6TpNYiN_2_caUcbEa1_i6zBp2eNWPv07MIq8OTl-A</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\Users\horba\OneDrive\Documents\LoadTesting\Results\loadSummaryKIOSK.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="BCSS Web API" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">300</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="BCSS Request" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+&quot;requestData&quot;:&#xd;
+&quot;{\&quot;ExpiryDate\&quot;:\&quot;221130\&quot;,\&quot;ExpiryDateFormat\&quot;:\&quot;\&quot;,\&quot;ApplicationPanSequenceNo\&quot;:\&quot;01\&quot;,\&quot;EncryptedPan\&quot;:\&quot;364E34F75585B5A0\&quot;,\&quot;CardholderName\&quot;:\&quot;STAKEHOLDER TEST\&quot;,\&quot;Track1DiscretionaryData\&quot;:\&quot;SSS1PPPP0000000000CCC000000\&quot;,\&quot;Track2DiscretionaryData\&quot;:\&quot;\&quot;,\&quot;CardEncryptionKeyRef\&quot;:\&quot;prime_44_KEK\&quot;,\&quot;ChipProfile\&quot;:\&quot;UBA-QVSDC-492069-Tst\&quot;,\&quot;ServiceCode\&quot;:\&quot;221\&quot;,\&quot;AppletName\&quot;:\&quot;VSDC\&quot;,\&quot;CardUniqueNo\&quot;:\&quot;0000000101\&quot;,\&quot;KeyEncryptionSessionKeyRef\&quot;:\&quot;GTB-PersoKEK\&quot;,\&quot;NetworkRecord\&quot;:\&quot;ACB-NPR-Visa-Test\&quot;}&quot;&#xd;
+}&#xd;
+</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.2.4.14</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/BcssWebApiTest/api/bcss/process</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\Users\horba\OneDrive\Documents\LoadTesting\Results\loadSummaryBCSS.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="HSM Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">300</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\Users\horba\OneDrive\Documents\LoadTesting\Results\loadSummaryHSM.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HSM  Request" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &#xd;
+&#xd;
+&lt;soap12:Envelope xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:soap12=&quot;http://www.w3.org/2003/05/soap-envelope&quot;&gt; &#xd;
+&#xd;
+  &lt;soap12:Body&gt; &#xd;
+&#xd;
+    &lt;ValidateTransaction xmlns=&quot;http://tempuri.org/&quot;&gt; &#xd;
+&#xd;
+      &lt;keyRef&gt;44|Test Profile&lt;/keyRef&gt; &#xd;
+&#xd;
+      &lt;oldPinBlock&gt;ssgAwR+X+KO/tKVnC5ofsmBFJAPui3lTrykwFpno32Q=&lt;/oldPinBlock&gt; &#xd;
+&#xd;
+      &lt;pan&gt;INO+9DxiWxdUiCvYSteN3HyNKQwivcZeVd2rKdJXp4w=&lt;/pan&gt;       &#xd;
+&#xd;
+      &lt;pinOffset&gt;O/QD5U7MTW05NbMP1QXpBmYq0Les8zJFyFuSxOt8uAE=&lt;/pinOffset&gt; &#xd;
+&#xd;
+      &lt;expDate&gt;L4/1q+J4o+GZlnhdJX8bqw==&lt;/expDate&gt;       &#xd;
+&#xd;
+      &lt;cvv&gt;JcXQLZ+/6HBGnLBV91lvDQ==&lt;/cvv&gt;       &#xd;
+&#xd;
+      &lt;panSeq&gt;01&lt;/panSeq&gt; &#xd;
+&#xd;
+      &lt;atc&gt;0043&lt;/atc&gt; &#xd;
+&#xd;
+      &lt;unpredicableNo&gt;25750057&lt;/unpredicableNo&gt; &#xd;
+&#xd;
+      &lt;transData&gt;000000000000000000000000056600000480000566210121012575005739000043A0400322080080&lt;/transData&gt; &#xd;
+&#xd;
+      &lt;cryptogram&gt;5137BDB78214C8CC&lt;/cryptogram&gt; &#xd;
+&#xd;
+      &lt;arc&gt;0014&lt;/arc&gt; &#xd;
+&#xd;
+      &lt;newPinBlock&gt;0&lt;/newPinBlock&gt;             &#xd;
+&#xd;
+      &lt;cryptoID&gt;0&lt;/cryptoID&gt; &#xd;
+&#xd;
+      &lt;newPinBlockNotTrans&gt;0&lt;/newPinBlockNotTrans&gt; &#xd;
+&#xd;
+      &lt;serviceCode&gt;999&lt;/serviceCode&gt; &#xd;
+&#xd;
+    &lt;/ValidateTransaction&gt; &#xd;
+&#xd;
+  &lt;/soap12:Body&gt; &#xd;
+&#xd;
+&lt;/soap12:Envelope&gt; </stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">PrimeHsmApi/hsmapi.asmx</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">text/xml;</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Prime MiddleWare" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">300</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="AccountValidation" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;accountNumber&quot;:&quot;{&#xd;
+		\&quot;AccountNumber\&quot;:\&quot;3055089433\&quot;,&#xd;
+		\&quot;CMSType\&quot;:\&quot;NICMS\&quot;,&#xd;
+		\&quot;AuthToken\&quot;:null,&#xd;
+		\&quot;Reference\&quot;:\&quot;19082902524953517156\&quot; &#xd;
+	}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/accountenquiry/RetrieveAccountDetails</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="PostTransaction" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;IncomingJsonRequest&quot;: &quot;{\&quot;ApproverUserId\&quot;:\&quot;USER CardProd\&quot;,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;CardExpiryDate\&quot;:\&quot;0001-01-01T00:00:00\&quot;,\&quot;CardType\&quot;:\&quot;\&quot;,\&quot;Currency\&quot;:\&quot;NGN\&quot;,\&quot;FromAccountNumber\&quot;:\&quot;24019350000601\&quot;,\&quot;FromAccountType\&quot;:\&quot;CURRENT ACCOUNT\&quot;,\&quot;IsBulkCredit\&quot;:false,\&quot;IsReversed\&quot;:false,\&quot;ResponseCode\&quot;:null,\&quot;ResponseDescription\&quot;:null,\&quot;RetrievalReference\&quot;:\&quot;19097312093069988625\&quot;,\&quot;SplitAccounts\&quot;:\&quot;3673677389\&quot;,\&quot;SplitAmount\&quot;:\&quot;1500\&quot;,\&quot;SplitNarration\&quot;:\&quot;Blank Cards Cost\&quot;,\&quot;STAN\&quot;:0,\&quot;TransactionDate\&quot;:\&quot;2019-09-23T12:09:30.6998595+00:00\&quot;,\&quot;UserId\&quot;:\&quot;USER CSO\&quot;}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/posting/PostTransaction</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SingleAndMultiple" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;IncomingJsonRequest&quot;:&quot;{\&quot;InstantTransaction\&quot;:{\&quot;TransactionVatAccountNumber\&quot;:\&quot;24033104000101\&quot;,\&quot;TransactionVATAmount\&quot;:\&quot;50\&quot;,\&quot;FromAccountType\&quot;:\&quot;CURRENT\&quot;,\&quot;ResponseCode\&quot;:null,\&quot;ResponseDescription\&quot;:null,\&quot;IsSuccessful\&quot;:false,\&quot;STAN\&quot;:0,\&quot;FromAccountNumber\&quot;:\&quot;2013843218\&quot;,\&quot;SplitAccounts\&quot;:\&quot;24019350000601\&quot;,\&quot;SplitAmount\&quot;:\&quot;300\&quot;,\&quot;TransactionDate\&quot;:\&quot;2020-05-21T20:55:43.5822451+00:00\&quot;,\&quot;SplitNarration\&quot;:\&quot;NairaMasterCard : MasterCard *****3046\&quot;,\&quot;Currency\&quot;:\&quot;NGN\&quot;,\&quot;IsReversed\&quot;:false,\&quot;ReversalDate\&quot;:null,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;CardPAN\&quot;:null,\&quot;CardType\&quot;:\&quot;NairaMasterCard\&quot;,\&quot;UserId\&quot;:\&quot;USER CSO\&quot;,\&quot;ApproverUserId\&quot;:\&quot;USER CSO\&quot;,\&quot;RetrievalReference\&quot;:\&quot;20052108554658222300088\&quot;,\&quot;CardExpiryDate\&quot;:\&quot;2020-05-23T00:00:00\&quot;,\&quot;IsBulkCredit\&quot;:false},\&quot;BatchNumber\&quot;:\&quot;200\&quot;,\&quot;Initiator\&quot;:\&quot;1093_26\&quot;,\&quot;InstitutionCode\&quot;:\&quot;26\&quot;,\&quot;Transactions\&quot;:[{\&quot;TransactionVatAccountNumber\&quot;:null,\&quot;TransactionVATAmount\&quot;:null,\&quot;FromAccountType\&quot;:\&quot;CURRENT\&quot;,\&quot;ResponseCode\&quot;:null,\&quot;ResponseDescription\&quot;:null,\&quot;IsSuccessful\&quot;:false,\&quot;STAN\&quot;:0,\&quot;FromAccountNumber\&quot;:\&quot;2013843218\&quot;,\&quot;SplitAccounts\&quot;:\&quot;24055090001001\&quot;,\&quot;SplitAmount\&quot;:\&quot;616\&quot;,\&quot;TransactionDate\&quot;:\&quot;2020-05-21T20:55:43.5978709+00:00\&quot;,\&quot;SplitNarration\&quot;:\&quot;Instant Issuance Cost-(Branch Income)\&quot;,\&quot;Currency\&quot;:\&quot;NGN\&quot;,\&quot;IsReversed\&quot;:false,\&quot;ReversalDate\&quot;:null,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;CardPAN\&quot;:null,\&quot;CardType\&quot;:\&quot;NairaMasterCard\&quot;,\&quot;UserId\&quot;:\&quot;USER CSO\&quot;,\&quot;ApproverUserId\&quot;:\&quot;USER CSO\&quot;,\&quot;RetrievalReference\&quot;:\&quot;2005219855435978501592\&quot;,\&quot;CardExpiryDate\&quot;:\&quot;2020-05-23T00:00:00\&quot;,\&quot;IsBulkCredit\&quot;:false},{\&quot;TransactionVatAccountNumber\&quot;:null,\&quot;TransactionVATAmount\&quot;:null,\&quot;FromAccountType\&quot;:\&quot;CURRENT\&quot;,\&quot;ResponseCode\&quot;:null,\&quot;ResponseDescription\&quot;:null,\&quot;IsSuccessful\&quot;:false,\&quot;STAN\&quot;:0,\&quot;FromAccountNumber\&quot;:\&quot;2013843218\&quot;,\&quot;SplitAccounts\&quot;:\&quot;2024930877\&quot;,\&quot;SplitAmount\&quot;:\&quot;76\&quot;,\&quot;TransactionDate\&quot;:\&quot;2020-05-21T20:55:43.5978709+00:00\&quot;,\&quot;SplitNarration\&quot;:\&quot;Instant Issuance Cost-(Appzone)\&quot;,\&quot;Currency\&quot;:\&quot;NGN\&quot;,\&quot;IsReversed\&quot;:false,\&quot;ReversalDate\&quot;:null,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;CardPAN\&quot;:null,\&quot;CardType\&quot;:\&quot;NairaMasterCard\&quot;,\&quot;UserId\&quot;:\&quot;USER CSO\&quot;,\&quot;ApproverUserId\&quot;:\&quot;USER CSO\&quot;,\&quot;RetrievalReference\&quot;:\&quot;20052198554359788477076\&quot;,\&quot;CardExpiryDate\&quot;:\&quot;2020-05-23T00:00:00\&quot;,\&quot;IsBulkCredit\&quot;:false},{\&quot;TransactionVatAccountNumber\&quot;:null,\&quot;TransactionVATAmount\&quot;:null,\&quot;FromAccountType\&quot;:\&quot;CURRENT\&quot;,\&quot;ResponseCode\&quot;:null,\&quot;ResponseDescription\&quot;:null,\&quot;IsSuccessful\&quot;:false,\&quot;STAN\&quot;:0,\&quot;FromAccountNumber\&quot;:\&quot;2013843218\&quot;,\&quot;SplitAccounts\&quot;:\&quot;48933100001401\&quot;,\&quot;SplitAmount\&quot;:\&quot;8\&quot;,\&quot;TransactionDate\&quot;:\&quot;2020-05-21T20:55:43.5978709+00:00\&quot;,\&quot;SplitNarration\&quot;:\&quot;Instant Issuance Cost-(WHT-FEDERAL)\&quot;,\&quot;Currency\&quot;:\&quot;NGN\&quot;,\&quot;IsReversed\&quot;:false,\&quot;ReversalDate\&quot;:null,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;CardPAN\&quot;:null,\&quot;CardType\&quot;:\&quot;NairaMasterCard\&quot;,\&quot;UserId\&quot;:\&quot;USER CSO\&quot;,\&quot;ApproverUserId\&quot;:\&quot;USER CSO\&quot;,\&quot;RetrievalReference\&quot;:\&quot;20052108554355786624644\&quot;,\&quot;CardExpiryDate\&quot;:\&quot;2020-05-23T00:00:00\&quot;,\&quot;IsBulkCredit\&quot;:false}],\&quot;AuthToken\&quot;:null,\&quot;isLien\&quot;:false}&quot;&#xd;
+	&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/posting/SingleAndMultiplePosting</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="SecureChipData" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;input&quot;:&quot;|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|03B022C7FFB6BE66|2305&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/securechip/SaveChipData</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="RetreiveChipData" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+	&quot;JsonData&quot;:&quot;1235|FiUv8eGmTN|7E3A5BF9373E12F3&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/securechip/RetrieveChipData</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LinkSecondaryAccount" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+&quot;JsonData&quot;:&quot;{&#xd;
+  	&#xd;
+\&quot;AccountNumber\&quot;:\&quot;3055089433\&quot;,\&quot;AccountType\&quot;:\&quot;10\&quot;,\&quot;CardPAN\&quot;:\&quot;11578CD5CC2F7FFB\&quot;,\&quot;DateRequested\&quot;:\&quot;2019-09-14T18:55:15.5198014+00:00\&quot;,\&quot;ExpiryDate\&quot;:\&quot;2019-07-01T00:00:00\&quot;,\&quot;CustomerID\&quot;:\&quot;520024978\&quot;,\&quot;CurrencyName\&quot;:\&quot;NGN\&quot;,\&quot;IssuingUser\&quot;:\&quot;\&quot;,\&quot;AuthToken\&quot;:null,\&quot;CMSType\&quot;:\&quot;POSTCARD\&quot;&#xd;
+  }&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/secondarylinking/LinkSecondaryAccountToCard</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="ValidateUser" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;JsonRequest&quot;:&#xd;
+  &quot;{&#xd;
+  \&quot;username\&quot;:\&quot;shelleol\&quot;,&#xd;
+  \&quot;password\&quot;:\&quot;Ub:110138784\&quot;&#xd;
+  }&quot;&#xd;
+  &#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/activedirectory/ValidateUser</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="GetUserDetail" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;UserName&quot;:&quot;shelleol&quot;,&#xd;
+  &quot;Password&quot;:&quot;Ub:110138784&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/activedirectory/GetUserDetails</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="RetrieveCardAccount" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;JsonCardAccount&quot;:&quot; {\&quot;CardPAN\&quot;:\&quot;5C23390DB745BC19\&quot;, \&quot;ExpiryDate\&quot;:\&quot;2022-07-27T00:00:00+01:00\&quot;, \&quot;AuthToken\&quot;:null, \&quot;CMSType\&quot;:\&quot;NICMS\&quot;}&quot;}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/fep/RetrieveCardAccounts</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="LinkAccountToCard" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+    &quot;JsonData&quot;: &quot;{\&quot;NameOnCard\&quot;:\&quot;ERONDU BRIGHT IFEANYI\&quot;,\&quot;AccountNumber\&quot;:\&quot;2009737008\&quot;,\&quot;AccountType\&quot;:\&quot;20\&quot;,\&quot;SecondaryAccountNumber\&quot;:\&quot;\&quot;,\&quot;SecondaryAccountType\&quot;:\&quot;\&quot;,\&quot;CardPAN\&quot;:\&quot;EAB580EC2A8F986D\&quot;,\&quot;DateIssued\&quot;:\&quot;2019-08-07T10:56:23\&quot;,\&quot;BranchCode\&quot;:\&quot;214\&quot;,\&quot;ExpiryDate\&quot;:\&quot;2021-08-01T00:00:00\&quot;,\&quot;CustomerID\&quot;:\&quot;106041757\&quot;,\&quot;CardProgram\&quot;:\&quot;VISA\&quot;,\&quot;CurrencyName\&quot;:\&quot;Ngn\&quot;,\&quot;DiscretionaryData\&quot;:\&quot;sssPPPPssss\&quot;,\&quot;IssuingUser\&quot;:\&quot;USER CSO\&quot;,\&quot;PinData\&quot;:\&quot;\&quot;,\&quot;CardReferenceNumber\&quot;:\&quot;0000001200\&quot;,\&quot;ExtraFields\&quot;:{\&quot;BatchNumber\&quot;:\&quot;PCR214#20190708#1907080132019319\&quot;,\&quot;ApprovingUser\&quot;:\&quot;USER HCFD\&quot;,\&quot;CardReferenceNumber\&quot;:\&quot;0000001200\&quot;,\&quot;SequenceNumber\&quot;:\&quot;01\&quot;,\&quot;RequestReason\&quot;:\&quot;00132\&quot;,\&quot;CardId\&quot;:\&quot;0000001200\&quot;,\&quot;CustomerType\&quot;:\&quot;I\&quot;,\&quot;CardStatusID\&quot;:\&quot;22\&quot;,\&quot;CMSType\&quot;:\&quot;NICMS\&quot;,\&quot;AccountStatus\&quot;:\&quot;\&quot;,\&quot;BirthDate\&quot;:\&quot;\&quot;,\&quot;BirthLocation\&quot;:\&quot;\&quot;,\&quot;PinOffset\&quot;:\&quot;\&quot;,\&quot;EncryptedPinBlock\&quot;:\&quot;\&quot;,\&quot;Gender\&quot;:\&quot;\&quot;,\&quot;Email\&quot;:\&quot;\&quot;,\&quot;Mobile\&quot;:\&quot;\&quot;,\&quot;Phone\&quot;:\&quot;\&quot;,\&quot;EncryptedCVV\&quot;:\&quot;\&quot;,\&quot;EncryptedCVV2\&quot;:\&quot;\&quot;,\&quot;FirstName\&quot;:\&quot;ERONDU\&quot;,\&quot;LastName\&quot;:\&quot;BRIGHT\&quot;,\&quot;Middlename\&quot;:\&quot;IFEANYI\&quot;,\&quot;FullName\&quot;:\&quot;ERONDU BRIGHT IFEANYI\&quot;,\&quot;IssuerNumber\&quot;:\&quot;0\&quot;},\&quot;PanPrefix\&quot;:\&quot;47065545\&quot;,\&quot;OldPan\&quot;:\&quot;\&quot;,\&quot;OldSequenceNo\&quot;:\&quot;\&quot;,\&quot;OldExpiry\&quot;:\&quot;\&quot;,\&quot;HoldResponseCode\&quot;:\&quot;41\&quot;,\&quot;AuthToken\&quot;:null}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/fep/LinkAccountToCard</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Hotlist" enabled="true">
+            <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+              <collectionProp name="Arguments.arguments">
+                <elementProp name="" elementType="HTTPArgument">
+                  <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                  <stringProp name="Argument.value">{&#xd;
+  &quot;input&quot;:&quot; {\&quot;CardPAN\&quot;:\&quot;815998C25139343D353FF3100331D518\&quot;,\&quot;ReasonForHotlist\&quot;:\&quot;35\&quot;,\&quot;Username\&quot;:\&quot;Anne Alu\&quot;,\&quot;Action\&quot;:\&quot;Hotlist\&quot;,\&quot;AuthToken\&quot;:null, \&quot;CMSType\&quot;:\&quot;NICMS\&quot;}&quot;&#xd;
+}</stringProp>
+                  <stringProp name="Argument.metadata">=</stringProp>
+                </elementProp>
+              </collectionProp>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">10.17.4.13</stringProp>
+            <stringProp name="HTTPSampler.port"></stringProp>
+            <stringProp name="HTTPSampler.protocol">https</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/FBNPrimeRedirectedIntegratorAPI/api/fep/HotListCard</stringProp>
+            <stringProp name="HTTPSampler.method">POST</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree>
+            <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+              <collectionProp name="HeaderManager.headers">
+                <elementProp name="" elementType="Header">
+                  <stringProp name="Header.name">Content-Type</stringProp>
+                  <stringProp name="Header.value">application/json</stringProp>
+                </elementProp>
+              </collectionProp>
+            </HeaderManager>
+            <hashTree/>
+          </hashTree>
+          <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename">C:\Users\horba\OneDrive\Documents\LoadTesting\Results\loadSummaryMiddleWare.csv</stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
